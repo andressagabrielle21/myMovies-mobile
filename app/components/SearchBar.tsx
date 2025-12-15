@@ -6,10 +6,11 @@ interface ISearchBar {
     placeholder: string,
     onPress?: () => void,
     value?: string,
-    onChangeText?: (text: string) => void
+    onChangeText?: (text: string) => void,
+    autoFocus?: boolean
 }
 
-const SearchBar = ({placeholder, onPress, value, onChangeText}: ISearchBar) => {
+const SearchBar = ({placeholder, onPress, value, onChangeText, autoFocus = false}: ISearchBar) => {
   return (
     <View 
         className='flex-row items-center bg-200 rounded-full px-5 py-4'
@@ -26,7 +27,7 @@ const SearchBar = ({placeholder, onPress, value, onChangeText}: ISearchBar) => {
             value={value}
             onChangeText={onChangeText}
             placeholderTextColor="#a8b5db"
-            autoFocus={true}
+            autoFocus={autoFocus}
             className='flex-1 ml-2 text-white'
         />
     </View>

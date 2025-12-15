@@ -3,7 +3,7 @@ import { useMovieList } from '@/context/useMovieList';
 import { router, useLocalSearchParams } from 'expo-router';
 import React, { useEffect } from 'react';
 import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 interface IMovieLabel {
   label: string,
@@ -33,9 +33,9 @@ const MovieDetails = () => {
 
   if (loading) {
     return (
-      <SafeAreaView className='bg-primary flex-1'>
+      <SafeAreaProvider className='bg-primary flex-1'>
         <ActivityIndicator />
-      </SafeAreaView>
+      </SafeAreaProvider>
     )
   }
 
@@ -58,10 +58,17 @@ const MovieDetails = () => {
         <View className='flex-col items-start justify-center mt-5 px-5'>
           <Text className="text-2xl font-bold text-white">{movieInfo?.title}</Text>
           
-          <View className='flex-row items-center gap-x-5 mt-2'>
-            <Text className="text-sm text-light-200">{movieInfo?.release_date.substring(0, 4)}</Text>
+          <View className='flex-row justify-between items-center mt-2 w-full'>
+            <View className='flex flex-row gap-x-5'>
+              <Text className="text-sm text-light-200">{movieInfo?.release_date.substring(0, 4)}</Text>
 
-            <Text className="text-sm text-light-200">{movieInfo?.runtime}min</Text>
+              <Text className="text-sm text-light-200">{movieInfo?.runtime}min</Text>
+            </View>
+
+            <TouchableOpacity className=' mx-5 rounded-full bg-accent p-3 flex flex-row items-center justify-center' 
+            >
+              <Text className='font-semibold text-white '>❤️</Text>
+            </TouchableOpacity>
 
           </View>
 

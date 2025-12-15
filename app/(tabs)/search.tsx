@@ -70,7 +70,7 @@ const Search = () => {
                 placeholder='Searching movies' 
                 value={searchTerm}
                 onChangeText={(text: string) => setSearchTerm(text)}
-
+                autoFocus={true}
               />
             </View>
 
